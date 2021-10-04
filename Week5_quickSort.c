@@ -19,11 +19,11 @@ void main() {
 	A = (int*)malloc(sizeof(int) * n); // 배열 동적 할당
 
 	for (i = 0; i < n; i++) { // 배열 원소 입력
-	
+
 		scanf("%d", A + i);
-	
+
 	}
-		
+
 	inPlaceQuickSort(A, 0, n - 1); // 퀵정렬 함수 호출
 
 	for (i = 0; i < n; i++) { // 정렬된 배열 출력
@@ -89,7 +89,7 @@ Pivot inPlacePartition(int* A, int l, int r, int k) { // 퀵정렬 도중 피벗
 	Pivot R;
 
 	p = *(A + k); // 피벗 원소 저장
-	
+
 	*(A + k) = *(A + r); // 마지막 원소와 위치 교환
 	*(A + r) = p;
 
@@ -100,9 +100,8 @@ Pivot inPlacePartition(int* A, int l, int r, int k) { // 퀵정렬 도중 피벗
 
 		if (*(A + i) == p) {
 
-			tmp = *(A + i);
 			*(A + i) = *(A + Pi);
-			*(A + Pi) = tmp;
+			*(A + Pi) = p;
 
 			Pi--;
 
@@ -111,7 +110,7 @@ Pivot inPlacePartition(int* A, int l, int r, int k) { // 퀵정렬 도중 피벗
 		i++;
 
 	}
-	
+
 	i = l;
 	j = Pi;
 
@@ -135,7 +134,7 @@ Pivot inPlacePartition(int* A, int l, int r, int k) { // 퀵정렬 도중 피벗
 			*(A + i) = *(A + j);
 			*(A + j) = tmp;
 
-		}		
+		}
 
 	}
 
@@ -143,14 +142,13 @@ Pivot inPlacePartition(int* A, int l, int r, int k) { // 퀵정렬 도중 피벗
 
 	while (i <= Pi) { // GT 구간과 EQ 구간의 위치 교환
 
-		tmp = *(A + B);
 		*(A + B) = *(A + Pi);
-		*(A + Pi) = tmp;
+		*(A + Pi) = p;
 
 		Pi--;
 		B--;
 
-	}	
+	}
 
 	R.a = i; // EQ 구간 인덱스 정보 저장
 	R.b = B;
